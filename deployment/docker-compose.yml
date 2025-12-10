@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  ml-api:
+    build: .
+    container_name: churn-prediction-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=production
+    volumes:
+      - ./features:/app/features
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  # PostgreSQL можно добавить позже
+  # db:
+  #   image: postgres:14
+  #   environment:
+  #     POSTGRES_PASSWORD: example
